@@ -5,7 +5,7 @@
   <title>Career Portfolio | Software Developer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- React (NO JSX, so no Babel needed) -->
+  <!-- React -->
   <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 
@@ -13,36 +13,52 @@
     * {
       box-sizing: border-box;
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: "Segoe UI", system-ui, sans-serif;
     }
 
     body {
-      background: #0f172a;
-      color: white;
+      background: radial-gradient(circle at top, #020617, #000);
+      color: #e5e7eb;
       overflow-x: hidden;
     }
 
+    /* ===== NAV ===== */
     nav {
       position: fixed;
       top: 0;
       width: 100%;
-      background: rgba(15, 23, 42, 0.95);
-      padding: 15px 40px;
+      padding: 18px 50px;
       display: flex;
       justify-content: space-between;
+      align-items: center;
+      background: rgba(2, 6, 23, 0.7);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.1);
       z-index: 100;
     }
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 20px;
-      font-size: 14px;
+    nav strong {
+      letter-spacing: 2px;
+      font-size: 13px;
+      color: #38bdf8;
     }
 
+    nav a {
+      color: #94a3b8;
+      text-decoration: none;
+      margin-left: 25px;
+      font-size: 13px;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #38bdf8;
+    }
+
+    /* ===== SECTIONS ===== */
     section {
       min-height: 100vh;
-      padding: 140px 40px;
+      padding: 160px 50px;
       display: flex;
       align-items: center;
     }
@@ -53,33 +69,45 @@
     }
 
     h1 {
-      font-size: 46px;
+      font-size: 52px;
+      font-weight: 600;
       margin-bottom: 20px;
+      color: white;
     }
 
     h2 {
-      font-size: 34px;
+      font-size: 38px;
+      font-weight: 500;
       margin-bottom: 20px;
+      color: white;
     }
 
     p {
       font-size: 18px;
-      line-height: 1.7;
-      color: #cbd5e1;
+      line-height: 1.8;
+      color: #94a3b8;
+      max-width: 750px;
     }
 
-    .card {
-      background: #1e293b;
-      margin-top: 30px;
-      padding: 25px;
-      border-radius: 10px;
+    /* ===== INFO PANEL ===== */
+    .panel {
+      margin-top: 40px;
+      padding: 30px;
+      border-radius: 12px;
+      background: linear-gradient(
+        180deg,
+        rgba(30, 41, 59, 0.35),
+        rgba(15, 23, 42, 0.35)
+      );
+      border: 1px solid rgba(56, 189, 248, 0.15);
+      box-shadow: 0 0 40px rgba(56, 189, 248, 0.05);
     }
 
-    /* Scroll animation */
+    /* ===== ANIMATION ===== */
     .reveal {
       opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.8s ease;
+      transform: translateY(60px);
+      transition: all 1s cubic-bezier(.22,1,.36,1);
     }
 
     .reveal.active {
@@ -97,7 +125,7 @@
 
   function App() {
     React.useEffect(() => {
-      const elements = document.querySelectorAll(".reveal");
+      const items = document.querySelectorAll(".reveal");
 
       const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
@@ -105,18 +133,18 @@
             entry.target.classList.add("active");
           }
         });
-      }, { threshold: 0.2 });
+      }, { threshold: 0.25 });
 
-      elements.forEach(el => observer.observe(el));
+      items.forEach(i => observer.observe(i));
     }, []);
 
     return e("div", null,
 
       e("nav", null,
-        e("strong", null, "Career Project"),
+        e("strong", null, "CAREER PROFILE"),
         e("div", null,
           e("a", { href: "#overview" }, "Overview"),
-          e("a", { href: "#day" }, "Day in Life"),
+          e("a", { href: "#life" }, "Day in Life"),
           e("a", { href: "#tasks" }, "Tasks"),
           e("a", { href: "#requirements" }, "Requirements")
         )
@@ -126,31 +154,31 @@
         e("div", { className: "container reveal" },
           e("h1", null, "Software Developer"),
           e("p", null,
-            "Software Developers design and build applications that power websites, games, and systems used every day."
+            "Software Developers build the digital systems that power modern technology, from applications and websites to complex platforms."
           )
         )
       ),
 
-      e("section", { id: "day" },
+      e("section", { id: "life" },
         e("div", { className: "container reveal" },
           e("h2", null, "Day in the Life"),
           e("p", null,
-            "A typical day includes planning tasks, writing and testing code, collaborating with teammates, and solving technical problems."
+            "Daily work includes planning features, writing and reviewing code, testing functionality, and collaborating with other developers."
           ),
-          e("div", { className: "card" },
-            "Developers often spend several hours coding, followed by meetings and reviewing progress."
+          e("div", { className: "panel" },
+            "Workdays are structured yet flexible, often combining deep focus with teamwork."
           )
         )
       ),
 
       e("section", { id: "tasks" },
         e("div", { className: "container reveal" },
-          e("h2", null, "Key Tasks"),
+          e("h2", null, "Primary Tasks"),
           e("p", null,
-            "This role involves building features, fixing bugs, testing software, and improving performance."
+            "This role focuses on developing software features, fixing issues, maintaining systems, and optimizing performance."
           ),
-          e("div", { className: "card" },
-            "Tasks vary depending on the company, but problem-solving is a daily responsibility."
+          e("div", { className: "panel" },
+            "Problem-solving and continuous learning are constant parts of the job."
           )
         )
       ),
@@ -159,10 +187,10 @@
         e("div", { className: "container reveal" },
           e("h2", null, "Requirements"),
           e("p", null,
-            "Most positions require strong problem-solving skills, coding knowledge, and the ability to work in a team."
+            "Strong analytical skills, technical knowledge, and the ability to work within a team are essential."
           ),
-          e("div", { className: "card" },
-            "Education ranges from high school to college or specialized training programs."
+          e("div", { className: "panel" },
+            "Education can range from high school to college or specialized training programs."
           )
         )
       )
