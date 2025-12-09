@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Career Portfolio | Job Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    /* ===== Reset ===== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f3f3f3;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* ===== Navbar ===== */
+    nav {
+      background: #0f172a;
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav h1 {
+      font-size: 18px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== Sections ===== */
+    section {
+      padding: 60px 30px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    section h2 {
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
+
+    /* ===== Hero ===== */
+    .hero {
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: 36px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #555;
+      margin-top: 10px;
+    }
+
+    /* ===== Info Cards (repeatable) ===== */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    .card ul {
+      padding-left: 18px;
+      font-size: 14px;
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      background: #0f172a;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav>
+  <h1>Career Profile</h1>
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#day">Day in the Life</a></li>
+    <li><a href="#tasks">Tasks</a></li>
+    <li><a href="#requirements">Requirements</a></li>
+    <li><a href="#environment">Work Environment</a></li>
+  </ul>
+</nav>
+
+<!-- ===== OVERVIEW ===== -->
+<section id="overview" class="hero">
+  <h2>Software Developer</h2>
+  <p>
+    Software Developers design, build, and maintain applications
+    that solve problems and improve daily life.
+  </p>
+</section>
+
+<!-- ===== DAY IN THE LIFE ===== -->
+<section id="day">
+  <h2>Day in the Life</h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Morning</h3>
+      <p>
+        Review emails, attend team meetings, and plan daily coding tasks.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Midday</h3>
+      <p>
+        Write code, fix bugs, and collaborate with other developers.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Afternoon</h3>
+      <p>
+        Test software, document work, and prepare for future updates.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TASKS ===== -->
+<section id="tasks">
+  <h2>Key Responsibilities</h2>
+
+  <div class="grid">
+    <!-- COPY THIS CARD FOR MORE TASK CATEGORIES -->
+    <div class="card">
+      <h3>Core Tasks</h3>
+      <ul>
+        <li>Write and maintain code</li>
+        <li>Debug software issues</li>
+        <li>Test applications</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Team Work</h3>
+      <ul>
+        <li>Collaborate with designers</li>
+        <li>Attend stand-up meetings</li>
+        <li>Review other people’s code</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REQUIREMENTS ===== -->
+<section id="requirements">
+  <h2>Requirements & Skills</h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Education</h3>
+      <ul>
+        <li>High school diploma (minimum)</li>
+        <li>College or coding courses preferred</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Technical Skills</h3>
+      <ul>
+        <li>HTML, CSS, JavaScript</li>
+        <li>Problem solving</li>
+        <li>Basic debugging</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Soft Skills</h3>
+      <ul>
+        <li>Communication</li>
+        <li>Time management</li>
+        <li>Teamwork</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WORK ENVIRONMENT ===== -->
+<section id="environment">
+  <h2>Work Environment & Tools</h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Environment</h3>
+      <ul>
+        <li>Office or remote work</li>
+        <li>Team-based setting</li>
+        <li>Flexible schedules</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Tools Used</h3>
+      <ul>
+        <li>Computer & IDE</li>
+        <li>Version control (Git)</li>
+        <li>Communication apps</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  School Career Project • Job Portfolio
+</footer>
+
+</body>
+</html>
