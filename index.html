@@ -14,18 +14,41 @@
 
 body {
   margin: 0;
-  background: linear-gradient(to bottom, #020617, #0f172a);
+  background: linear-gradient(to bottom, #020617, #0f172a, #1e293b, #1e3a8a, #164e63, #312e81);
   color: white;
   overflow-x: hidden;
 }
 
+/* NAV */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(2,6,23,0.7);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: space-around;
+  padding: 15px;
+  z-index: 1000;
+}
+
+header a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+header a:hover {
+  color: #38bdf8;
+}
+
+/* SECTIONS */
 section {
   min-height: 100vh;
-  padding: 12vh 15vw;
+  padding: 14vh 15vw;
   opacity: 0;
   transform: translateY(80px);
   transition: all 1s ease;
-  position: relative;
 }
 
 section.active {
@@ -44,35 +67,58 @@ p {
   max-width: 900px;
 }
 
-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: rgba(2,6,23,0.8);
-  backdrop-filter: blur(6px);
-  display: flex;
-  justify-content: space-around;
-  padding: 15px;
-  z-index: 1000;
+/* FLASHCARDS */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  margin-top: 40px;
 }
 
-header a {
-  color: white;
-  text-decoration: none;
+.flip-card {
+  background: transparent;
+  width: 100%;
+  height: 180px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  text-align: center;
+}
+
+.flip-card-front {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.flip-card-back {
+  background: #38bdf8;
+  color: black;
+  transform: rotateY(180deg);
   font-weight: bold;
 }
-
-header a:hover {
-  color: #38bdf8;
-}
-
-/* Parallax backgrounds */
-.bg1 { background: radial-gradient(circle at top, #1e293b, #020617); }
-.bg2 { background: radial-gradient(circle at top, #0f172a, #020617); }
-.bg3 { background: radial-gradient(circle at top, #1e3a8a, #020617); }
-.bg4 { background: radial-gradient(circle at top, #164e63, #020617); }
-.bg5 { background: radial-gradient(circle at top, #312e81, #020617); }
-.bg6 { background: radial-gradient(circle at top, #0f172a, #020617); }
 </style>
 </head>
 
@@ -87,93 +133,150 @@ header a:hover {
   <a href="#extras">Extras</a>
 </header>
 
-<!-- HOME -->
-<section id="home" class="bg1">
+<section id="home">
 <h1>IT Support Specialist</h1>
 <p>
-An IT Support Specialist is responsible for helping individuals and organizations solve problems related to computers, software, and networks. In Ontario, IT Support Specialists are needed in almost every industry, including schools, hospitals, government offices, and private businesses.
+An IT Support Specialist helps individuals and organizations solve problems related to computers, software, and networks. In Ontario, these professionals are essential in schools, hospitals, government offices, and businesses.
 </p>
 <p>
-Their main role is to ensure that technology systems run smoothly and that users can work efficiently without interruptions caused by technical issues. This career combines technical knowledge with strong communication skills.
+Their main responsibility is to keep technology working properly so that users can perform their daily tasks without disruption. This role combines technical knowledge with strong communication skills.
 </p>
 <p>
-A typical day may involve responding to help desk tickets, installing software, repairing hardware, and assisting users both in person and remotely. No two days are exactly the same, as new technical problems can arise at any time.
+A typical day includes responding to help desk tickets, diagnosing system problems, installing software, and assisting users both in person and remotely.
 </p>
+
+<div class="card-container">
+  <div class="flip-card" onclick="flipCard(this)">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">Daily Tasks</div>
+      <div class="flip-card-back">Fixing computers, updating software, helping users</div>
+    </div>
+  </div>
+  <div class="flip-card" onclick="flipCard(this)">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">Typical Day</div>
+      <div class="flip-card-back">Support requests, system maintenance, troubleshooting</div>
+    </div>
+  </div>
+</div>
 </section>
 
-<!-- EDUCATION -->
-<section id="education" class="bg2">
+<section id="education">
 <h1>Education & Training (Ontario)</h1>
 <p>
-In Ontario, students interested in becoming an IT Support Specialist can begin preparing in high school by taking courses related to technology and mathematics. These courses build a strong foundation in problem-solving and digital skills.
+Students in Ontario can begin preparing for this career in high school by choosing courses related to technology and mathematics. These subjects help build problem-solving and computer skills.
 </p>
 <p>
-Recommended Ontario high school courses include Computer Science (ICS), Mathematics, Business Studies, and Communications Technology. These subjects help students understand how computers work and how technology is used in workplaces.
+Recommended high school courses include Computer Science (ICS), Mathematics, Business Studies, and Communications Technology. These courses introduce students to coding, systems, and digital tools.
 </p>
 <p>
-After high school, most IT Support Specialists complete a college diploma or university degree in Information Technology, Computer Systems, or Computer Science. Many Ontario colleges offer two- or three-year programs that focus on practical, hands-on skills.
+After high school, most IT Support Specialists attend college or university for Information Technology or Computer Systems programs. Certifications such as CompTIA A+ and Network+ improve job prospects.
 </p>
-<p>
-Certifications such as CompTIA A+ or Network+ can improve job opportunities and demonstrate technical competence. The total education time typically ranges from two to four years depending on the pathway chosen.
-</p>
+
+<div class="card-container">
+  <div class="flip-card" onclick="flipCard(this)">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">High School</div>
+      <div class="flip-card-back">ICS, Math, Business, Tech</div>
+    </div>
+  </div>
+  <div class="flip-card" onclick="flipCard(this)">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">Post-Secondary</div>
+      <div class="flip-card-back">College diplomas or university degrees</div>
+    </div>
+  </div>
+</div>
 </section>
 
-<!-- SKILLS -->
-<section id="skills" class="bg3">
+<section id="skills">
 <h1>Skills & Qualities Needed</h1>
 <p>
-IT Support Specialists require strong technical skills related to computer hardware, operating systems, and basic networking. They must be able to identify problems quickly and apply effective solutions using both software and physical components.
+IT Support Specialists need technical knowledge of computer hardware, operating systems, and basic networking. These skills help them identify and fix issues efficiently.
 </p>
 <p>
-Communication is one of the most important skills in this career. IT Support Specialists must explain technical issues clearly to people who may not have any technical knowledge. This requires patience, clarity, and professionalism.
+Strong communication skills are required to explain technical problems clearly to non-technical users. Patience and professionalism are essential when helping frustrated clients.
 </p>
-<p>
-Personal qualities such as responsibility, attention to detail, and teamwork are also important. IT Support Specialists often work with other IT professionals and must follow security procedures to protect sensitive information.
-</p>
+
+<div class="card-container">
+  <div class="flip-card" onclick="flipCard(this)">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">Technical Skills</div>
+      <div class="flip-card-back">Hardware, OS, networking</div>
+    </div>
+  </div>
+  <div class="flip-card" onclick="flipCard(this)">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">Personal Traits</div>
+      <div class="flip-card-back">Patience, teamwork, responsibility</div>
+    </div>
+  </div>
+</div>
 </section>
 
-<!-- SALARY -->
-<section id="salary" class="bg4">
+<section id="salary">
 <h1>Salary & Earnings (Ontario)</h1>
 <p>
-In Ontario, entry-level IT Support Specialists typically earn between $40,000 and $50,000 per year. With additional experience and certifications, salaries can increase to $60,000 to $80,000 or more annually.
+Entry-level IT Support Specialists in Ontario earn approximately $40,000 to $50,000 per year. With experience, salaries can increase to $60,000 to $80,000 or more.
 </p>
 <p>
-Most IT Support Specialists are paid a salary, although some positions pay hourly wages. Earnings can vary depending on the size of the organization, geographic location, and level of technical responsibility.
+Pay is usually salary-based, but some positions are hourly. Earnings vary by city, employer, and level of expertise.
 </p>
-<p>
-Large cities such as Toronto and Ottawa often offer higher wages due to higher demand and cost of living. Specialized skills in networking or cybersecurity can also increase earning potential.
-</p>
+
+<div class="card-container">
+  <div class="flip-card" onclick="flipCard(this)">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">Entry Level</div>
+      <div class="flip-card-back">$40k–$50k</div>
+    </div>
+  </div>
+  <div class="flip-card" onclick="flipCard(this)">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">Experienced</div>
+      <div class="flip-card-back">$60k–$80k+</div>
+    </div>
+  </div>
+</div>
 </section>
 
-<!-- ENVIRONMENT -->
-<section id="environment" class="bg5">
+<section id="environment">
 <h1>Work Environment</h1>
 <p>
-IT Support Specialists usually work indoors in offices, schools, hospitals, or data centers. Many jobs involve working directly with computers and servers in controlled environments.
+IT Support Specialists work indoors in offices, schools, hospitals, and data centers. Some positions allow remote support through online systems.
 </p>
 <p>
-Some positions allow remote work, where technical support is provided through phone calls or online systems. This allows IT professionals to help users from different locations without traveling.
+Work hours are usually daytime, but shift work and on-call duties may be required in certain industries.
 </p>
-<p>
-Work hours are typically during the daytime, but some organizations require evening shifts or on-call support to maintain 24-hour systems. This can include weekends in certain industries.
-</p>
+
+<div class="card-container">
+  <div class="flip-card" onclick="flipCard(this)">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">Workplace</div>
+      <div class="flip-card-back">Offices, schools, hospitals</div>
+    </div>
+  </div>
+  <div class="flip-card" onclick="flipCard(this)">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">Hours</div>
+      <div class="flip-card-back">Day shifts, some on-call</div>
+    </div>
+  </div>
+</div>
 </section>
 
-<!-- EXTRAS -->
-<section id="extras" class="bg6">
+<section id="extras">
 <h1>Extras</h1>
 <p>
-This career is important because modern society depends heavily on technology. Without IT Support Specialists, businesses and schools would struggle to operate when systems fail.
+This career is important because modern society depends on technology. IT Support Specialists ensure that systems stay functional and secure.
 </p>
 <p>
-There are several benefits to working as an IT Support Specialist. These include high job demand, opportunities for advancement, and the ability to work in many different industries. However, challenges include dealing with frustrated users and managing stressful situations when systems break down.
+Benefits include high demand and career growth opportunities, while challenges include handling stressful technical problems and user frustration.
 </p>
 <p>
-IT Support Specialists use a variety of tools and technologies, including computers, servers, operating systems such as Windows and Linux, and network devices such as routers and switches. Support software is also used to track problems and provide remote assistance.
+Tools and technologies include computers, servers, operating systems, and networking devices. Support software is used to manage technical issues efficiently.
 </p>
 <p>
-A fun fact about this career is that the first computer “bug” was an actual insect found inside a computer in 1947. Today, IT Support Specialists still use the term “bug” when referring to technical problems.
+A fun fact is that the first recorded computer bug was an actual moth found inside a machine in 1947.
 </p>
 </section>
 
@@ -191,6 +294,10 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.3 });
 
 sections.forEach(section => observer.observe(section));
+
+function flipCard(card) {
+  card.classList.toggle("flipped");
+}
 </script>
 
 </body>
