@@ -1,203 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Career Portfolio | Software Developer</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- React -->
-  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <meta charset="UTF-8">
+  <title>IT Support Specialist - Career Project</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
     * {
       box-sizing: border-box;
-      margin: 0;
-      font-family: "Segoe UI", system-ui, sans-serif;
+      scroll-behavior: smooth;
+      font-family: Arial, sans-serif;
     }
 
     body {
-      background: radial-gradient(circle at top, #020617, #000);
-      color: #e5e7eb;
-      overflow-x: hidden;
+      margin: 0;
+      background: #0f172a;
+      color: white;
     }
 
-    /* ===== NAV ===== */
-    nav {
+    header {
       position: fixed;
       top: 0;
       width: 100%;
-      padding: 18px 50px;
+      background: #020617;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(2, 6, 23, 0.7);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(148, 163, 184, 0.1);
-      z-index: 100;
+      justify-content: space-around;
+      padding: 15px;
+      z-index: 1000;
     }
 
-    nav strong {
-      letter-spacing: 2px;
-      font-size: 13px;
-      color: #38bdf8;
-    }
-
-    nav a {
-      color: #94a3b8;
+    header a {
+      color: white;
       text-decoration: none;
-      margin-left: 25px;
-      font-size: 13px;
+      font-weight: bold;
       transition: color 0.3s;
     }
 
-    nav a:hover {
+    header a:hover {
       color: #38bdf8;
     }
 
-    /* ===== SECTIONS ===== */
     section {
       min-height: 100vh;
-      padding: 160px 50px;
-      display: flex;
-      align-items: center;
-    }
-
-    .container {
-      max-width: 900px;
-      margin: auto;
-    }
-
-    h1 {
-      font-size: 52px;
-      font-weight: 600;
-      margin-bottom: 20px;
-      color: white;
-    }
-
-    h2 {
-      font-size: 38px;
-      font-weight: 500;
-      margin-bottom: 20px;
-      color: white;
-    }
-
-    p {
-      font-size: 18px;
-      line-height: 1.8;
-      color: #94a3b8;
-      max-width: 750px;
-    }
-
-    /* ===== INFO PANEL ===== */
-    .panel {
-      margin-top: 40px;
-      padding: 30px;
-      border-radius: 12px;
-      background: linear-gradient(
-        180deg,
-        rgba(30, 41, 59, 0.35),
-        rgba(15, 23, 42, 0.35)
-      );
-      border: 1px solid rgba(56, 189, 248, 0.15);
-      box-shadow: 0 0 40px rgba(56, 189, 248, 0.05);
-    }
-
-    /* ===== ANIMATION ===== */
-    .reveal {
+      padding: 120px 10%;
       opacity: 0;
-      transform: translateY(60px);
-      transition: all 1s cubic-bezier(.22,1,.36,1);
+      transform: translateY(40px);
+      transition: all 0.8s ease;
     }
 
-    .reveal.active {
+    section.show {
       opacity: 1;
       transform: translateY(0);
     }
+
+    h1 {
+      color: #38bdf8;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .card {
+      background: #020617;
+      padding: 20px;
+      border-radius: 15px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #38bdf8;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      background: #38bdf8;
+      color: black;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    .hidden-text {
+      display: none;
+      margin-top: 15px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: #020617;
+    }
   </style>
 </head>
+
 <body>
 
-<div id="root"></div>
+<header>
+  <a href="#home">Home</a>
+  <a href="#education">Education</a>
+  <a href="#skills">Skills</a>
+  <a href="#salary">Salary</a>
+  <a href="#environment">Environment</a>
+  <a href="#extras">Extras</a>
+</header>
+
+<!-- HOME -->
+<section id="home">
+  <h1>IT Support Specialist</h1>
+  <p>An IT Support Specialist helps people and businesses fix computer problems and keep technology working properly.</p>
+
+  <h2>Daily Tasks & Responsibilities</h2>
+  <div class="card-grid">
+    <div class="card">Fix computer and software problems</div>
+    <div class="card">Install and update programs</div>
+    <div class="card">Set up computers and networks</div>
+    <div class="card">Help users with technical issues</div>
+  </div>
+
+  <h2>Typical Day</h2>
+  <p>A typical day includes answering support requests, troubleshooting hardware and software, and maintaining systems.</p>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <h1>Education & Training (Ontario)</h1>
+
+  <h2>High School Courses</h2>
+  <div class="card-grid">
+    <div class="card">Computer Science (ICS)</div>
+    <div class="card">Mathematics</div>
+    <div class="card">Business Studies</div>
+    <div class="card">Communications Technology</div>
+  </div>
+
+  <h2>College / University / Certifications</h2>
+  <div class="card-grid">
+    <div class="card">Ontario College Diploma (IT or Computer Systems)</div>
+    <div class="card">University Degree (Computer Science or IT)</div>
+    <div class="card">Certifications (CompTIA A+, Network+)</div>
+    <div class="card">Apprenticeships or Co-op programs</div>
+  </div>
+
+  <h2>How Long Education Takes</h2>
+  <p>Education can take 2–4 years depending on the pathway chosen.</p>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <h1>Skills & Qualities Needed</h1>
+
+  <h2>Technical Skills</h2>
+  <div class="card-grid">
+    <div class="card">Computer hardware knowledge</div>
+    <div class="card">Networking basics</div>
+    <div class="card">Problem solving</div>
+    <div class="card">Communication skills</div>
+  </div>
+
+  <h2>Personal Traits</h2>
+  <div class="card-grid">
+    <div class="card">Patience</div>
+    <div class="card">Teamwork</div>
+    <div class="card">Responsibility</div>
+    <div class="card">Attention to detail</div>
+  </div>
+</section>
+
+<!-- SALARY -->
+<section id="salary">
+  <h1>Salary / Earnings (Ontario)</h1>
+
+  <div class="card-grid">
+    <div class="card">Entry-level: $40,000–$50,000 per year</div>
+    <div class="card">Experienced: $60,000–$80,000+ per year</div>
+    <div class="card">Usually paid salary</div>
+    <div class="card">Varies by location and experience</div>
+  </div>
+</section>
+
+<!-- ENVIRONMENT -->
+<section id="environment">
+  <h1>Work Environment</h1>
+
+  <div class="card-grid">
+    <div class="card">Offices and schools</div>
+    <div class="card">Hospitals and businesses</div>
+    <div class="card">Sometimes remote work</div>
+    <div class="card">Uses computers and servers</div>
+  </div>
+
+  <p>Work hours are usually daytime, but some jobs require shift work or on-call support.</p>
+</section>
+
+<!-- EXTRAS -->
+<section id="extras">
+  <h1>Extras</h1>
+
+  <h2>Why is this career important?</h2>
+  <p>IT Support Specialists keep technology running so businesses and schools can operate smoothly.</p>
+
+  <h2>Pros & Cons</h2>
+  <div class="card-grid">
+    <div class="card">✔ High demand for workers</div>
+    <div class="card">✔ Many career paths</div>
+    <div class="card">✖ Can be stressful</div>
+    <div class="card">✖ Long screen time</div>
+  </div>
+
+  <h2>Tools & Technology</h2>
+  <div class="card-grid">
+    <div class="card">Computers and servers</div>
+    <div class="card">Operating systems (Windows, Linux)</div>
+    <div class="card">Networking equipment</div>
+    <div class="card">Support software</div>
+  </div>
+
+  <h2>Fun Facts</h2>
+  <button onclick="toggleText()">Click to Show Fun Facts</button>
+  <div id="funfacts" class="hidden-text">
+    <p>• The first computer bug was a real insect.</p>
+    <p>• IT support exists in almost every industry.</p>
+    <p>• Many IT workers start as support specialists.</p>
+  </div>
+
+  <h2>Interview with a Professional</h2>
+  <p>You can add your interview here later.</p>
+</section>
+
+<footer>
+  IT Support Specialist Career Project © 2026
+</footer>
 
 <script>
-  const e = React.createElement;
+  const sections = document.querySelectorAll("section");
 
-  function App() {
-    React.useEffect(() => {
-      const items = document.querySelectorAll(".reveal");
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+      }
+    });
+  });
 
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("active");
-          }
-        });
-      }, { threshold: 0.25 });
+  sections.forEach(section => observer.observe(section));
 
-      items.forEach(i => observer.observe(i));
-    }, []);
-
-    return e("div", null,
-
-      e("nav", null,
-        e("strong", null, "CAREER PROFILE"),
-        e("div", null,
-          e("a", { href: "#overview" }, "Overview"),
-          e("a", { href: "#life" }, "Day in Life"),
-          e("a", { href: "#tasks" }, "Tasks"),
-          e("a", { href: "#requirements" }, "Requirements")
-        )
-      ),
-
-      e("section", { id: "overview" },
-        e("div", { className: "container reveal" },
-          e("h1", null, "Software Developer"),
-          e("p", null,
-            "Software Developers build the digital systems that power modern technology, from applications and websites to complex platforms."
-          )
-        )
-      ),
-
-      e("section", { id: "life" },
-        e("div", { className: "container reveal" },
-          e("h2", null, "Day in the Life"),
-          e("p", null,
-            "Daily work includes planning features, writing and reviewing code, testing functionality, and collaborating with other developers."
-          ),
-          e("div", { className: "panel" },
-            "Workdays are structured yet flexible, often combining deep focus with teamwork."
-          )
-        )
-      ),
-
-      e("section", { id: "tasks" },
-        e("div", { className: "container reveal" },
-          e("h2", null, "Primary Tasks"),
-          e("p", null,
-            "This role focuses on developing software features, fixing issues, maintaining systems, and optimizing performance."
-          ),
-          e("div", { className: "panel" },
-            "Problem-solving and continuous learning are constant parts of the job."
-          )
-        )
-      ),
-
-      e("section", { id: "requirements" },
-        e("div", { className: "container reveal" },
-          e("h2", null, "Requirements"),
-          e("p", null,
-            "Strong analytical skills, technical knowledge, and the ability to work within a team are essential."
-          ),
-          e("div", { className: "panel" },
-            "Education can range from high school to college or specialized training programs."
-          )
-        )
-      )
-    );
+  function toggleText() {
+    const facts = document.getElementById("funfacts");
+    facts.style.display = facts.style.display === "block" ? "none" : "block";
   }
-
-  ReactDOM.createRoot(document.getElementById("root")).render(e(App));
 </script>
 
 </body>
