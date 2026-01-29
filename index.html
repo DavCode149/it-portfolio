@@ -6,6 +6,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+:root {
+  --bg1:#020617;
+  --bg2:#0f172a;
+  --text:#ffffff;
+  --accent:#38bdf8;
+}
+
+body.light {
+  --bg1:#e0f2fe;
+  --bg2:#f8fafc;
+  --text:#020617;
+}
+
 * {
   box-sizing: border-box;
   scroll-behavior: smooth;
@@ -13,116 +26,213 @@
 }
 
 body {
-  margin: 0;
-  background: linear-gradient(to bottom, #020617, #0f172a, #1e293b, #1e3a8a, #164e63, #312e81);
-  color: white;
-  overflow-x: hidden;
+  margin:0;
+  background: linear-gradient(to bottom,var(--bg1),var(--bg2),#1e293b,#1e3a8a,#164e63,#312e81);
+  color: var(--text);
+  overflow-x:hidden;
+}
+
+/* Scroll progress */
+#progress {
+  position: fixed;
+  top:0;
+  left:0;
+  height:5px;
+  background: linear-gradient(90deg,#38bdf8,#818cf8);
+  width:0%;
+  z-index:2000;
+}
+
+/* Mouse glow */
+#glow {
+  position: fixed;
+  width:300px;
+  height:300px;
+  background: radial-gradient(circle, rgba(56,189,248,0.15), transparent 70%);
+  pointer-events:none;
+  transform: translate(-50%,-50%);
+  z-index:0;
+}
+
+/* Floating shapes */
+.shape {
+  position: fixed;
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  background: rgba(56,189,248,0.08);
+  animation: float 20s infinite linear;
+}
+.shape:nth-child(1){top:20%;left:10%;}
+.shape:nth-child(2){top:60%;left:80%;animation-duration:25s;}
+.shape:nth-child(3){top:80%;left:30%;animation-duration:30s;}
+
+@keyframes float {
+  0%{transform:translateY(0);}
+  50%{transform:translateY(-100px);}
+  100%{transform:translateY(0);}
 }
 
 /* NAV */
 header {
   position: fixed;
-  top: 0;
-  width: 100%;
+  top:0;
+  width:100%;
   background: rgba(2,6,23,0.7);
   backdrop-filter: blur(8px);
-  display: flex;
-  justify-content: space-around;
-  padding: 15px;
-  z-index: 1000;
+  display:flex;
+  justify-content:space-around;
+  padding:15px;
+  z-index:1000;
 }
 
-header a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
+header a, #modeBtn {
+  color: var(--text);
+  text-decoration:none;
+  font-weight:bold;
+  transition:0.3s;
 }
 
-header a:hover {
-  color: #38bdf8;
+header a:hover, #modeBtn:hover {
+  color: var(--accent);
+  transform: scale(1.15);
+  text-shadow:0 0 10px var(--accent);
+}
+
+#modeBtn {
+  background:none;
+  border:none;
+  cursor:pointer;
 }
 
 /* SECTIONS */
 section {
-  min-height: 100vh;
-  padding: 14vh 15vw;
-  opacity: 0;
-  transform: translateY(80px);
-  transition: all 1s ease;
+  min-height:100vh;
+  padding:14vh 15vw;
+  opacity:0;
+  transform:translateY(80px);
+  transition:1s ease;
+  position:relative;
+  z-index:1;
 }
-
 section.active {
-  opacity: 1;
-  transform: translateY(0);
+  opacity:1;
+  transform:translateY(0);
 }
 
+/* HEADERS */
 h1 {
-  color: #38bdf8;
-  font-size: 3em;
+  font-size:3em;
+  background: linear-gradient(90deg,#38bdf8,#818cf8,#38bdf8);
+  background-size:300%;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation: glowmove 6s linear infinite;
+}
+@keyframes glowmove {
+  0%{background-position:0%;}
+  100%{background-position:300%;}
 }
 
+/* TEXT */
 p {
-  font-size: 1.2em;
-  line-height: 1.7;
-  max-width: 900px;
+  font-size:1.2em;
+  line-height:1.7;
+  max-width:900px;
+  padding:15px;
+  border-radius:12px;
+  transition:0.4s;
+}
+p:hover {
+  background: rgba(255,255,255,0.05);
+  box-shadow:0 0 15px rgba(56,189,248,0.3);
+  transform:translateY(-3px);
+}
+
+/* IMAGES */
+img {
+  max-width:300px;
+  border-radius:12px;
+  margin:20px 0;
+  box-shadow:0 0 15px rgba(56,189,248,0.3);
 }
 
 /* FLASHCARDS */
 .card-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 25px;
-  margin-top: 40px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:25px;
+  margin-top:40px;
 }
 
 .flip-card {
-  background: transparent;
-  width: 100%;
-  height: 180px;
-  perspective: 1000px;
-  cursor: pointer;
+  height:180px;
+  perspective:1000px;
+  transition:0.3s;
 }
-
+.flip-card:hover {
+  transform:scale(1.07);
+  filter:drop-shadow(0 0 12px var(--accent));
+}
 .flip-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.8s;
-  transform-style: preserve-3d;
+  position:relative;
+  width:100%;
+  height:100%;
+  transition:transform 0.8s;
+  transform-style:preserve-3d;
 }
-
 .flip-card.flipped .flip-card-inner {
-  transform: rotateY(180deg);
+  transform:rotateY(180deg);
 }
-
 .flip-card-front, .flip-card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  border-radius: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 15px;
-  text-align: center;
+  position:absolute;
+  width:100%;
+  height:100%;
+  backface-visibility:hidden;
+  border-radius:15px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:15px;
+  text-align:center;
 }
-
 .flip-card-front {
   background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.2);
+  border:1px solid rgba(255,255,255,0.2);
+}
+.flip-card-back {
+  background: linear-gradient(135deg,#38bdf8,#818cf8);
+  color:black;
+  transform:rotateY(180deg);
+  font-weight:bold;
 }
 
-.flip-card-back {
-  background: #38bdf8;
-  color: black;
-  transform: rotateY(180deg);
-  font-weight: bold;
+/* SKILL BARS */
+.skill {
+  margin:15px 0;
+}
+.bar {
+  height:15px;
+  background:#1e293b;
+  border-radius:10px;
+  overflow:hidden;
+}
+.fill {
+  height:100%;
+  background: linear-gradient(90deg,#38bdf8,#818cf8);
+  width:0%;
+  transition:2s;
 }
 </style>
 </head>
 
 <body>
+
+<div id="progress"></div>
+<div id="glow"></div>
+<div class="shape"></div>
+<div class="shape"></div>
+<div class="shape"></div>
 
 <header>
   <a href="#home">Home</a>
@@ -131,172 +241,106 @@ p {
   <a href="#salary">Salary</a>
   <a href="#environment">Environment</a>
   <a href="#extras">Extras</a>
+  <button id="modeBtn" onclick="toggleMode()">🌙</button>
 </header>
 
 <section id="home">
-<h1>IT Support Specialist</h1>
-<p>
-An IT Support Specialist helps individuals and organizations solve problems related to computers, software, and networks. In Ontario, these professionals are essential in schools, hospitals, government offices, and businesses.
-</p>
-<p>
-Their main responsibility is to keep technology working properly so that users can perform their daily tasks without disruption. This role combines technical knowledge with strong communication skills.
-</p>
-<p>
-A typical day includes responding to help desk tickets, diagnosing system problems, installing software, and assisting users both in person and remotely.
-</p>
+<h1 id="typing"></h1>
+<img src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png" alt="IT support placeholder image">
+<p>An IT Support Specialist helps people and organizations solve computer and network problems across Ontario.</p>
+<p>A typical day involves responding to technical issues, installing software, and helping users.</p>
 
 <div class="card-container">
   <div class="flip-card" onclick="flipCard(this)">
     <div class="flip-card-inner">
       <div class="flip-card-front">Daily Tasks</div>
-      <div class="flip-card-back">Fixing computers, updating software, helping users</div>
-    </div>
-  </div>
-  <div class="flip-card" onclick="flipCard(this)">
-    <div class="flip-card-inner">
-      <div class="flip-card-front">Typical Day</div>
-      <div class="flip-card-back">Support requests, system maintenance, troubleshooting</div>
+      <div class="flip-card-back">Fix computers and assist users</div>
     </div>
   </div>
 </div>
 </section>
 
 <section id="education">
-<h1>Education & Training (Ontario)</h1>
-<p>
-Students in Ontario can begin preparing for this career in high school by choosing courses related to technology and mathematics. These subjects help build problem-solving and computer skills.
-</p>
-<p>
-Recommended high school courses include Computer Science (ICS), Mathematics, Business Studies, and Communications Technology. These courses introduce students to coding, systems, and digital tools.
-</p>
-<p>
-After high school, most IT Support Specialists attend college or university for Information Technology or Computer Systems programs. Certifications such as CompTIA A+ and Network+ improve job prospects.
-</p>
-
-<div class="card-container">
-  <div class="flip-card" onclick="flipCard(this)">
-    <div class="flip-card-inner">
-      <div class="flip-card-front">High School</div>
-      <div class="flip-card-back">ICS, Math, Business, Tech</div>
-    </div>
-  </div>
-  <div class="flip-card" onclick="flipCard(this)">
-    <div class="flip-card-inner">
-      <div class="flip-card-front">Post-Secondary</div>
-      <div class="flip-card-back">College diplomas or university degrees</div>
-    </div>
-  </div>
-</div>
+<h1>Education (Ontario)</h1>
+<img src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png" alt="Ontario education placeholder image">
+<p>High school courses include Computer Science (ICS), Mathematics, Business, and Technology.</p>
+<p>College and university programs focus on IT and Computer Systems.</p>
 </section>
 
 <section id="skills">
-<h1>Skills & Qualities Needed</h1>
-<p>
-IT Support Specialists need technical knowledge of computer hardware, operating systems, and basic networking. These skills help them identify and fix issues efficiently.
-</p>
-<p>
-Strong communication skills are required to explain technical problems clearly to non-technical users. Patience and professionalism are essential when helping frustrated clients.
-</p>
+<h1>Skills</h1>
 
-<div class="card-container">
-  <div class="flip-card" onclick="flipCard(this)">
-    <div class="flip-card-inner">
-      <div class="flip-card-front">Technical Skills</div>
-      <div class="flip-card-back">Hardware, OS, networking</div>
-    </div>
-  </div>
-  <div class="flip-card" onclick="flipCard(this)">
-    <div class="flip-card-inner">
-      <div class="flip-card-front">Personal Traits</div>
-      <div class="flip-card-back">Patience, teamwork, responsibility</div>
-    </div>
-  </div>
-</div>
+<div class="skill">Technical Knowledge<div class="bar"><div class="fill" style="width:85%"></div></div></div>
+<div class="skill">Communication<div class="bar"><div class="fill" style="width:75%"></div></div></div>
+<div class="skill">Problem Solving<div class="bar"><div class="fill" style="width:80%"></div></div></div>
+
 </section>
 
 <section id="salary">
-<h1>Salary & Earnings (Ontario)</h1>
-<p>
-Entry-level IT Support Specialists in Ontario earn approximately $40,000 to $50,000 per year. With experience, salaries can increase to $60,000 to $80,000 or more.
-</p>
-<p>
-Pay is usually salary-based, but some positions are hourly. Earnings vary by city, employer, and level of expertise.
-</p>
-
-<div class="card-container">
-  <div class="flip-card" onclick="flipCard(this)">
-    <div class="flip-card-inner">
-      <div class="flip-card-front">Entry Level</div>
-      <div class="flip-card-back">$40k–$50k</div>
-    </div>
-  </div>
-  <div class="flip-card" onclick="flipCard(this)">
-    <div class="flip-card-inner">
-      <div class="flip-card-front">Experienced</div>
-      <div class="flip-card-back">$60k–$80k+</div>
-    </div>
-  </div>
-</div>
+<h1>Salary</h1>
+<p>Entry-level: $40,000–$50,000 per year.</p>
+<p>Experienced: $60,000–$80,000+.</p>
 </section>
 
 <section id="environment">
-<h1>Work Environment</h1>
-<p>
-IT Support Specialists work indoors in offices, schools, hospitals, and data centers. Some positions allow remote support through online systems.
-</p>
-<p>
-Work hours are usually daytime, but shift work and on-call duties may be required in certain industries.
-</p>
-
-<div class="card-container">
-  <div class="flip-card" onclick="flipCard(this)">
-    <div class="flip-card-inner">
-      <div class="flip-card-front">Workplace</div>
-      <div class="flip-card-back">Offices, schools, hospitals</div>
-    </div>
-  </div>
-  <div class="flip-card" onclick="flipCard(this)">
-    <div class="flip-card-inner">
-      <div class="flip-card-front">Hours</div>
-      <div class="flip-card-back">Day shifts, some on-call</div>
-    </div>
-  </div>
-</div>
+<h1>Environment</h1>
+<p>IT Support Specialists work in offices, schools, hospitals, and remotely.</p>
 </section>
 
 <section id="extras">
 <h1>Extras</h1>
-<p>
-This career is important because modern society depends on technology. IT Support Specialists ensure that systems stay functional and secure.
-</p>
-<p>
-Benefits include high demand and career growth opportunities, while challenges include handling stressful technical problems and user frustration.
-</p>
-<p>
-Tools and technologies include computers, servers, operating systems, and networking devices. Support software is used to manage technical issues efficiently.
-</p>
-<p>
-A fun fact is that the first recorded computer bug was an actual moth found inside a machine in 1947.
-</p>
+<p>This career is important because society relies on technology.</p>
+<p>Fun fact: the first computer bug was a moth in 1947.</p>
 </section>
 
 <script>
-const sections = document.querySelectorAll("section");
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
+/* Scroll animations */
+const sections=document.querySelectorAll("section");
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
       entry.target.classList.add("active");
+      entry.target.querySelectorAll(".fill").forEach(bar=>{
+        bar.style.width=bar.style.width;
+      });
     } else {
       entry.target.classList.remove("active");
     }
   });
-}, { threshold: 0.3 });
+},{threshold:0.3});
+sections.forEach(s=>observer.observe(s));
 
-sections.forEach(section => observer.observe(section));
+/* Flip cards */
+function flipCard(card){card.classList.toggle("flipped");}
 
-function flipCard(card) {
-  card.classList.toggle("flipped");
+/* Typing */
+const text="IT Support Specialist";
+let i=0;
+function type(){
+  if(i<text.length){
+    document.getElementById("typing").textContent+=text.charAt(i);
+    i++;setTimeout(type,100);
+  }
+}
+type();
+
+/* Mouse glow */
+document.addEventListener("mousemove",e=>{
+  const g=document.getElementById("glow");
+  g.style.left=e.clientX+"px";
+  g.style.top=e.clientY+"px";
+});
+
+/* Progress bar */
+window.addEventListener("scroll",()=>{
+  const h=document.documentElement.scrollHeight-window.innerHeight;
+  const sc=(window.scrollY/h)*100;
+  document.getElementById("progress").style.width=sc+"%";
+});
+
+/* Dark/Light */
+function toggleMode(){
+  document.body.classList.toggle("light");
 }
 </script>
 
