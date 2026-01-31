@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+/* Half of this CSS writen by ChatGPT cause I couldn't get it to work */
 :root {
   --bg1:#020617;
   --bg2:#0f172a;
@@ -32,7 +33,7 @@ body {
   overflow-x:hidden;
 }
 
-/* Scroll progress */
+/* Scroll progress bar*/
 #progress {
   position: fixed;
   top:0;
@@ -43,7 +44,7 @@ body {
   z-index:2000;
 }
 
-/* Mouse glow */
+/* Mouse glowy effect */
 #glow {
   position: fixed;
   width:300px;
@@ -54,7 +55,7 @@ body {
   z-index:0;
 }
 
-/* Floating shapes */
+/* Floating shapes in bg (didnt really work that well)*/
 .shape {
   position: fixed;
   width:120px;
@@ -73,7 +74,7 @@ body {
   100%{transform:translateY(0);}
 }
 
-/* NAV */
+/* navigation bar */
 header {
   position: fixed;
   top:0;
@@ -105,7 +106,7 @@ header a:hover, #modeBtn:hover {
   cursor:pointer;
 }
 
-/* SECTIONS */
+/* sections */
 section {
   min-height:100vh;
   padding:14vh 15vw;
@@ -120,7 +121,7 @@ section.active {
   transform:translateY(0);
 }
 
-/* HEADERS */
+/* headers/titles */
 h1 {
   font-size:3em;
   background: linear-gradient(90deg,#38bdf8,#818cf8,#38bdf8);
@@ -134,7 +135,7 @@ h1 {
   100%{background-position:300%;}
 }
 
-/* TEXT */
+/* text that glows when hovered over */
 p {
   font-size:1.2em;
   line-height:1.7;
@@ -149,7 +150,7 @@ p:hover {
   transform:translateY(-3px);
 }
 
-/* IMAGES */
+/* images */
 img {
   max-width:300px;
   border-radius:12px;
@@ -157,7 +158,7 @@ img {
   box-shadow:0 0 15px rgba(56,189,248,0.3);
 }
 
-/* FLASHCARDS */
+/* flashcard thingy */
 .card-container {
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -207,7 +208,7 @@ img {
   font-weight:bold;
 }
 
-/* SKILL BARS */
+/* bars for skills page */
 .skill {
   margin:15px 0;
 }
@@ -309,7 +310,7 @@ img {
 </section>
 
 <script>
-/* Scroll animations */
+/* cool scrolling animations */
 const sections=document.querySelectorAll("section");
 const observer=new IntersectionObserver(entries=>{
   entries.forEach(entry=>{
@@ -325,10 +326,10 @@ const observer=new IntersectionObserver(entries=>{
 },{threshold:0.3});
 sections.forEach(s=>observer.observe(s));
 
-/* Flip cards */
+/* function to flip cards */
 function flipCard(card){card.classList.toggle("flipped");}
 
-/* Typing */
+/* typewriter effect when loaded */
 const text="IT Support Specialist";
 let i=0;
 function type(){
@@ -339,21 +340,21 @@ function type(){
 }
 type();
 
-/* Mouse glow */
+/* mouse glow */
 document.addEventListener("mousemove",e=>{
   const g=document.getElementById("glow");
   g.style.left=e.clientX+"px";
   g.style.top=e.clientY+"px";
 });
 
-/* Progress bar */
+/* page progress bar */
 window.addEventListener("scroll",()=>{
   const h=document.documentElement.scrollHeight-window.innerHeight;
   const sc=(window.scrollY/h)*100;
   document.getElementById("progress").style.width=sc+"%";
 });
 
-/* Dark/Light */
+/* Dark/Light toggle */
 function toggleMode(){
   document.body.classList.toggle("light");
 }
